@@ -24,22 +24,4 @@ public class ControlStatementDemo {
 }
 
 
-class Student {
-	String name;
-	int stuID;
-	boolean tester;
 
-	public Student(String stdName, int stuID, boolean tester) {
-		this.name = stdName;
-		this.stuID = stuID;
-		this.tester = tester;
-	}
-
-	public boolean getIsMilser() {
-		return tester;
-	}
-
-	public void showInfo() {
-		System.out.println(name+","+stuID+","+tester);
-	}
-}
