@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>유효성 검사</title>
+</head>
+<style>
+form {
+	border: 1px solid black;
+}
+</style>
+<script>
+	
+	
+	function validation() {	
+		var form = document.getElementById("formTest");
+		
+		for(var i = 0; i<form.length;i++) {
+			if(form.elements[i].dataset.validation=="y") {
+				dataValidation(i);
+			}
+		}
+	}
+/* 	function dataValidation2(i) {
+		var form = document.getElementById("formTest");
+		for(var i = 0; i<form.length;i++) {
+			alert();
+			if(form.elements[i].value==""||!form.elements[i].checked||form.elements[i].value==form.elements[i].name) {
+				alertMsg(i)
+			}
+		}
+	} */
+	function dataValidation(i) {
+		var form = document.getElementById("formTest");
+		var type = form.elements[i].type;
+		
+		switch(type) {
+			case "text":
+				if(form.elements[i].value=="") {
+					alertMsg(i)
+				}
+				break;
+				
+			case "radio":
+				if(form.elements[i].checked||form.elements[i+1].checked) {
+				} else {
+					alertMsg(i)
+				}
+				break;
+				
+			case "checkbox":
+				if(!form.elements[i].checked&&!form.elements[i+1].checked) {
+					alertMsg(i)
+				}
+				break;
+				
+			case "select-one":
+				if(form.elements[i].value==form.elements[i].name) {
+					alertMsg(i)
+				}
+				break;
+				
+			default:
+				alert("에러");
+		}
+		event.preventDefault();
+		
+		function alertMsg(i) {
+			alert(form.elements[i].name+"을 확인해 주세요!");
+			form.elements[i].focus();
+		}
+	}
+	
+</script>
+<body>
+	<form id="formTest">
+		<span>이름 : </span><input type="text" size="10" data-validation="y" name = "이름"><br>
+		<span>성별 : </span><input type="radio" value="남" name="성별" data-validation="y">남자<input type="radio" value="여" name="성별" data-validation="y">여자<br>
+		<span>국적 : </span><input type="radio" value="내국인" name="국적">내국인<input type="radio" value="외국인" name="국적">외국인<br>
+		<span>취미 : </span><input type="checkbox" value="독서" data-validation="y" name="취미">독서<input type="checkbox" value="게임" data-validation="y" name="취미">게임<br>
+		<span>거주지 : </span> <select	name="거주지" data-validation="y">
+			<option value="거주지" selected="selected">거주지</option>
+			<option value="수도권">수도권</option>
+			<option value="기타">기타</option>
+		</select> <br>
+		<br> <input type="submit" value="submit" onclick="validation()">
+	</form>
+
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<script>
+	function add(x, y) {
+		oVar;
+	}
+	
+	var gVar = 1;
+	function outerFunc() {
+		var oVar = 2;
+		function innerFunc() {
+			console.dir(innerFunc);
+			var iVar = 3;
+		}
+		add();
+	}
+</script>
+<body>
+	
+</body>
+</html>

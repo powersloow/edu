@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+</head>
+
+<script>
+	var ObjArr = new Array();
+	
+	function MyObj(id, pid, name) { // id : 아이디 , pid : 부모id , name : 이름
+		this.id = id;
+		this.pid = pid;
+		this.name = name;
+		//console.log(ObjArr);
+	}
+	
+	function makeObj(id, pid, name) {
+		ObjArr.push(new MyObj(id, pid, name));
+	}
+	
+	function clearSelect(pObj) {
+		var obj = document.createElement('option');
+		obj.value = "";
+		obj.text = "-선택-";
+		pObj.add(obj);
+	}
+	
+	function setOption(selectIdArr) {
+		initData();
+		var selectIdArr = selectIdArr;
+		console.log(selectIdArr);
+		console.log(ObjArr);
+	
+		for(i=0; i<selectIdArr.length ; i++) {
+			var pObj = document.getElementById(selectIdArr[i]);
+			clearSelect(pObj);
+		}
+	}
+	
+	function setChild(pObj) {
+		
+	}
+	
+	function initData() {
+		makeObj(100, 000, "소니");
+		makeObj(200, 000, "마이크로소프트");
+		makeObj(300, 000, "닌텐도");
+		makeObj(110, 100, "ps2");
+		makeObj(120, 100, "ps3");
+		makeObj(130, 100, "ps4");
+		makeObj(210, 200, "xbox360");
+		makeObj(220, 200, "xboxOne");
+		makeObj(310, 300, "ds");
+		makeObj(320, 300, "3ds");
+		makeObj(330, 300, "switch");
+		makeObj(111, 110, "ps2-1001");
+		makeObj(112, 110, "ps2-2001");
+		makeObj(113, 110, "ps2-3001");
+		makeObj(121, 120, "ps3-1001");
+		makeObj(122, 120, "ps3-2001");
+		makeObj(123, 120, "ps3-3001");
+	}
+	
+	window.onload = function (){
+		var selectIdArr = ['1st', '2nd', '3rd', '4th'];
+		setOption(selectIdArr);			
+	}
+	
+</script>
+<body>
+	<form>
+		<select id = "1st"></select>
+		<select id = "2nd"></select>
+		<select id = "3rd"></select>
+		<select id = "4th"></select>
+	</form>
+	
+</body>
+</html>

@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+
+<script>
+	var SelectModule = function(selectId) {
+		var selectArr = selectId;
+		var ObjArr = new Array();
+		var selectObj = null;
+		
+		var form = document.getElementById("form1");
+
+		this.makeObj = function(id, pid, name) {
+			ObjArr.push(new MyObj(id, pid, name));
+		}
+		
+		var jsondata = {
+			"data" : [
+			          {"id" : "1000" , "pid" : "0000" , "name" : "소니"},
+			          {"id" : "2000" , "pid" : "0000" , "name" : "마이크로소프트"},
+			          {"id" : "3000" , "pid" : "0000" , "name" : "닌텐도"},
+			          {"id" : "1100" , "pid" : "1000" , "name" : "ps2"},
+			          {"id" : "1200" , "pid" : "1000" , "name" : "ps3"},
+			          {"id" : "1300" , "pid" : "1000" , "name" : "ps4"},
+			          {"id" : "2100" , "pid" : "2000" , "name" : "xbox360"},
+			          {"id" : "2200" , "pid" : "2000" , "name" : "xboxOne"},
+			          {"id" : "3100" , "pid" : "3000" , "name" : "ds"},
+			          {"id" : "3200" , "pid" : "3000" , "name" : "3ds"},
+			          {"id" : "1110" , "pid" : "1100" , "name" : "ps2-1001"},
+			          {"id" : "1120" , "pid" : "1100" , "name" : "ps2-2001"},
+			          {"id" : "1210" , "pid" : "1200" , "name" : "ps3-1001"},
+			          {"id" : "1111" , "pid" : "1110" , "name" : "데빌메이크라이"},
+			          {"id" : "1121" , "pid" : "1120" , "name" : "다크소울"},
+			          {"id" : "3110" , "pid" : "3100" , "name" : "ds xl"},
+			          {"id" : "3120" , "pid" : "3100" , "name" : "new ds"},
+			          {"id" : "3111" , "pid" : "3110" , "name" : "포켓몬스터 골드"}
+			          ]
+		};
+		console.log(jsondata);
+		
+		this.addAll = function() {
+			// this.initData();
+			ObjArr = jsondata['data'];
+			console.log(ObjArr);
+			var rootPid = "0000";
+
+			for(i=0;i<form.length;i++) {
+				setFirstOption(form[i]);
+			}
+			var childNode = findChild(rootPid);
+			setChild(form[0], childNode);
+			
+			for(i=0;i<selectArr.length-1;i++) {
+				selectObj = document.getElementById(selectArr[i]);
+				
+				// 이벤트
+				selectObj.onchange = function(){
+					var nextNode = findSelect(this.id);
+					// console.log(nextNode);
+					
+					for(j=0;j<ObjArr.length;j++) {
+						if(ObjArr[j].name == this.value) {
+							var pid = ObjArr[j].id;
+						}
+					}
+					childNode = findChild(pid);
+					resetChild(nextNode.id);
+					setChild(nextNode, childNode);
+				}
+			}
+		}
+		
+		// 자식 갯수 확인
+		function findChild(pid) {
+			var childArr = [];
+			for(i=0;i<ObjArr.length;i++) {
+				if(ObjArr[i].pid==pid) {
+					childArr.push(ObjArr[i]);
+				}
+			}
+			return childArr;			
+		}
+		
+		// 자식 옵션 추가
+		function setChild(selects, childs) {
+			for(i=0; i<childs.length;i++) {
+				var obj = document.createElement('option');
+				obj.id = childs[i].id;
+				obj.text = childs[i].name;
+				selects.add(obj);	
+			}
+			
+		}
+		
+		// 자식 초기화
+		function resetChild(id) {
+			var cCnt=0;
+			for(i=0;i<selectArr.length;i++) {
+				if(selectArr[i]==id) {
+					cCnt = i;
+				}
+			}
+			var form = document.getElementById("form1");
+			for(i=cCnt;i<selectArr.length;i++) {
+				form[i].length = 1;
+			}
+		}
+		
+		// 다음 위치 찾기
+		function findSelect(id) {
+			for(i=0;i<selectArr.length-1;i++) {
+				if(selectArr[i]==id) {
+					return document.getElementById(selectArr[i+1]);
+				}	
+			}
+		}
+		
+		// -선택- 옵션 추가
+		function setFirstOption(pObj) { 
+			var obj = document.createElement('option');
+			obj.value = "";
+			obj.text = "-선택-";
+			pObj.add(obj);
+		}		
+	}
+
+	window.onload = function() {
+		var selectId = ['select1','select2','select3','select4'];
+		var objModule = new SelectModule(selectId);
+		objModule.addAll();
+	}
+</script>
+<style>
+	div {
+		border : 2px solid #CC0000;
+		width: 520px;
+		height: 250px;
+		background-color : #FF9999;
+	}
+	
+	h1 {
+		text-align : center;
+		color : #fff;
+	}
+	
+	form {
+		vertical-align : text-top;
+		padding-left: 90px;
+	}
+	
+	#div1 {
+	  background: linear-gradient(90deg, #ee5c87, #f1a4b5, #d587b3);
+	}
+	
+	select {
+		width: 200px;
+		height: 25px;
+		padding-left: 15px;
+		margin : 5px;
+		font-size: 15px;
+		color: #330000;
+		border: 2px solid #993333;
+		border-radius: 3px;
+		background: linear-gradient(90deg, #cfecd0, #ffc5ca);
+	}
+	
+	span {
+		color : #fff;
+		font-size: 18px;
+		font-weight: bold;
+	}
+	
+	//BUTTON 5
+	.fifth {
+	  border-color: $purple;
+	  // border: 0;
+	  border-radius: 0;
+	  color: $purple;
+	  position: relative;
+	  overflow: hidden;
+	  z-index: 1;
+	  transition: color 150ms ease-in-out;
+	  
+	  &:after {
+	    content: '';
+	    position: absolute;
+	    display: block;
+	    top: 0;
+	    left: 50%;
+	    transform: translateX(-50%);
+	    width: 0;
+	    height: 100%;
+	    background: $purple;
+	    z-index: -1;
+	    transition: width 150ms ease-in-out;
+	  }
+	  
+	  &:hover {
+	    color: #fff;
+	    &:after {
+	      width: 110%;
+	    }
+	  }
+	}
+
+</style>
+<body>
+	<div id = "div1">
+	<h1>콘솔게임 기기, 타이틀 정리</h1>
+		<form id="form1">
+			<select id = 'select1'></select><span>회사</span><br>
+			<select id = 'select2'></select><span>기종</span><br>
+			<select id = 'select3'></select><span>모델명</span><br>
+			<select id = 'select4'></select><span>타이틀</span><br>
+		</form>
+
+	</div>
+</body>
+</html>

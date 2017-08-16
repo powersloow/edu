@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<style>
+	div {
+		border : 1px solid #ff0000;
+		padding : 10px;
+	}
+	
+	p {
+		display : none;
+		background-color : yellow;
+		padding : 20px;
+	}
+	
+	div:active p {
+		display:block;
+	}
+	
+	#f_title:hover {
+		color : red;
+	}
+	
+	#s_title:hover {
+		color : blue;
+	}
+	
+	#t_title:hover {
+		color : hotpink;
+	}
+	
+</style>
+<body>
+	<p>aaa</p>
+	<div><p>div1</p></div>
+	<div><p>div2</p></div>
+	<h1 id="f_title">반응선택자</h1>
+	<h1 id="s_title">반응선택자</h1>
+	<h1 id="t_title">반응선택자</h1>
+</body>
+</html>

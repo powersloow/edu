@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+
+<script type="text/javascript">
+	(function() {
+		function sum() {
+			return this.x+ this.y;
+		}
+		
+		var obj = {userName : "홍길동",
+				   getUserName : function() {
+					   return this.userName;
+				   }}
+		alert();
+		console.log(obj.getUserName());
+		var obj1 = {userName : "임꺽정",
+					getUserName : null};
+		obj1.getUserName = obj.getUserName;
+		console.log(obj1.getUserName.apply(obj));
+		
+		var obj2 = {x:1, y:3, sumFunc: function() {
+					 return sum.apply(this);
+					}};
+		console.log(sum.apply(obj2));
+		console.log(obj2.sumFunc());
+		
+		var num = new Number(1234);
+	})();
+</script>
+
+<body>
+
+</body>
+</html>

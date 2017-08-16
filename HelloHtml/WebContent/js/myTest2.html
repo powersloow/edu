@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+
+<script>
+	function MyObj(id, pid, name) { // id : 아이디 , pid : 부모id , name : 이름
+		this.id = id;
+		this.pid = pid;
+		this.name = name;
+	}
+
+	function selectChange() {
+
+	}
+
+	var SelectModule = function(form) {
+		var selectArr = new Array();
+		var form = form;
+		var ObjArr = new Array();
+		var selectObj = null;
+
+		this.makeObj = function(id, pid, name) {
+			ObjArr.push(new MyObj(id, pid, name));
+		}
+
+		this.initData = function() {
+			this.makeObj("100", "000", "소니");
+			this.makeObj("200", "000", "마이크로소프트");
+			this.makeObj("300", "000", "닌텐도");
+			this.makeObj("110", "100", "ps2");
+			this.makeObj("120", "100", "ps3");
+			this.makeObj("130", "100", "ps4");
+			this.makeObj("210", "200", "xbox360");
+			this.makeObj("220", "200", "xboxOne");
+			this.makeObj("310", "300", "ds");
+			this.makeObj("320", "300", "3ds");
+			this.makeObj("330", "300", "switch");
+			console.log(ObjArr);
+		}
+
+		this.addAll = function() {
+			this.initData();
+
+			console.log(ObjArr[0].id);
+
+			for(i=0;i<form.length;i++) {
+				selectArr.push(form[i].id);
+				setFirstOption(form[i]);
+			}
+			
+			setOption(ObjArr, form[0], "000");
+			//console.log(form[0].length);
+			for(i=0;i<form.length-1;i++) {
+				selectObj = form[i];
+				
+				form.onchange = function(j){
+					console.log(j);
+					console.log(j.path[0].value);
+					var temp = j.path[0].value;
+					var pidt = findNode(ObjArr, temp);
+					//alert(i);
+					for(i=0;i<selectArr.length;i++) {
+						if(selectArr[i]==j.path[0].id) {
+							var text = form[i+1];
+						}
+					}
+					alert(1);
+					setOption.apply(ObjArr, text, pidt);
+					console.log(text);
+				}
+			}
+		}
+
+		
+	}
+	function setOption(ObjArr, text, pid) {
+		console.log(text);
+		for(i=0;i<ObjArr.length;i++) {
+			if(ObjArr[i].pid==pid) {
+				var obj = document.createElement('option');
+				obj.value = ObjArr[i].name;
+				obj.text = ObjArr[i].name;
+				text.appendChild(obj);
+			}
+		} 
+	}
+	
+	function findNode(ObjArr, name) {
+		for(i=0;i<ObjArr.length;i++) {
+			if(ObjArr[i].name==name) {
+				console.log(ObjArr[i].id);
+				return ObjArr[i].id;
+			}
+		}
+	}
+
+	// -선택- 옵션 추가
+	function setFirstOption(pObj) {
+		var obj = document.createElement('option');
+		obj.value = "";
+		obj.text = "-선택-";
+		pObj.add(obj);
+	}
+
+	window.onload = function() {
+		var objModule = new SelectModule(document.getElementById("form1"));
+		objModule.addAll();
+	}
+</script>
+
+<body>
+	<form id="form1">
+		<select id = 'select1'></select>
+		<select id = 'select2'></select>
+		<select id = 'select3'></select>
+		<select id = 'select4'></select>
+	</form>
+
+</body>
+</html>

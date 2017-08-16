@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<script>
+	var primitveVar1 = "kim";
+	var primitveVar2 = 3.14;
+	var refVar1 = [];
+	console.log(typeof "kim");
+	console.log(typeof 3.14);
+	console.log(typeof true);
+	console.log(typeof null);
+	console.log(typeof undefined);
+	
+	var subtract = function(x, y) {
+		return x-y;
+	}
+	
+	var gva1=1;
+	var gva2=2;
+	console.log(add(gva1, gva2));
+	console.log(subtract(gva2, gva1));
+	(function() {
+		var a = 1;
+		var b = 2;
+		var result;
+		// console.log(a+b);
+		result = a+b;
+		
+		function add(x, y) {
+			return x+y;
+		}
+	})();
+	
+	window.onload = function() {
+		//console.log(result);		
+	}
+	
+	function add(x,y) {
+		return x+y;
+	}
+	
+</script>
+<body>
+	<ul>
+		<li>string</li>
+		<li>number</li>
+		<li>boolean</li>
+		<li>null</li>
+		<li>undefined</li>
+	</ul>
+
+</body>
+</html>

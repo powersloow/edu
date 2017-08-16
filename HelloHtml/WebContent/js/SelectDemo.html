@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="..\\css\\styleTest.css">
+<title>SelectDemo</title>
+</head>
+<script>
+	var SelectModule = function(selectArr) {
+		var idArr = selectArr;
+		var dataArr = [];
+		var selectObj = null;
+		
+		var jsonData = {
+				"data" : [
+				          {"id" : "1000" , "pid" : "0000" , "name" : "소니"},
+				          {"id" : "2000" , "pid" : "0000" , "name" : "마이크로소프트"},
+				          {"id" : "3000" , "pid" : "0000" , "name" : "닌텐도"},
+				          {"id" : "1100" , "pid" : "1000" , "name" : "ps2"},
+				          {"id" : "1200" , "pid" : "1000" , "name" : "ps3"},
+				          {"id" : "1300" , "pid" : "1000" , "name" : "ps4"},
+				          {"id" : "2100" , "pid" : "2000" , "name" : "xbox360"},
+				          {"id" : "2200" , "pid" : "2000" , "name" : "xboxOne"},
+				          {"id" : "3100" , "pid" : "3000" , "name" : "ds"},
+				          {"id" : "3200" , "pid" : "3000" , "name" : "3ds"},
+				          {"id" : "1110" , "pid" : "1100" , "name" : "ps2-1001"},
+				          {"id" : "1120" , "pid" : "1100" , "name" : "ps2-2001"},
+				          {"id" : "1210" , "pid" : "1200" , "name" : "ps3-1001"},
+				          {"id" : "1111" , "pid" : "1110" , "name" : "데빌메이크라이"},
+				          {"id" : "1121" , "pid" : "1120" , "name" : "다크소울"},
+				          {"id" : "3110" , "pid" : "3100" , "name" : "ds xl"},
+				          {"id" : "3120" , "pid" : "3100" , "name" : "new ds"},
+				          {"id" : "3111" , "pid" : "3110" , "name" : "포켓몬스터 골드"}
+				          ]
+			};
+			console.log(jsonData);
+			
+			this.initData = function() {
+				dataArr = jsonData['data'];
+				console.log(dataArr);
+				var rootPid = "0000";
+				
+				for(i=0;i<idArr.length;i++) {
+					var sTemp = document.getElementById(idArr[i]);
+					setFirstOption(sTemp);
+				}
+				selectObj = document.getElementById(idArr[0]);
+				var childArr = countChlid(rootPid);
+				setChild(selectObj, childArr);
+				
+				for(i=0;i<idArr.length-1;i++) {
+					selectObj = document.getElementById(idArr[i]);
+					
+					// 이벤트
+					selectObj.onchange = function(){
+						// console.log(this.id);
+						var nextChild = findNext(this.id);
+						// console.log(nextChild);
+						for(j=0; j<dataArr.length;j++) {
+							if(dataArr[j].id==this.value) {
+								var pid = dataArr[j].id;
+								//console.log(pid);
+							}
+						}
+						childArr = countChlid(pid);
+						resetChild(this.id);
+						setChild(nextChild, childArr);
+					}
+				}		
+			}
+			
+			// 다음 위치 찾기
+			function findNext(id) {
+				for(i=0;i<idArr.length-1;i++) {
+					if(idArr[i]==id) {
+						return document.getElementById(idArr[i+1]);
+					}	
+				}
+			}
+			
+			// 자식 확인
+			function countChlid(pid) {
+				var childArr = [];
+				for(i=0;i<dataArr.length;i++) {
+					if(dataArr[i].pid==pid) {
+						// console.log(dataArr[i].name);
+						childArr.push(dataArr[i]);
+					}
+				}
+				return childArr;
+			}
+			
+			// 자식option 넣기
+			function setChild(select, childArr) {
+				for(i=0;i<childArr.length;i++) {
+					var obj = document.createElement('option');
+					obj.value = childArr[i].id;
+					obj.text = childArr[i].name;
+					select.add(obj);
+				}
+			}
+			
+			// 자식 항목 선택 초기화
+			function resetChild(id) {
+				var cCnt=0;
+				var select;
+				for(i=0;i<idArr.length;i++) {
+					if(idArr[i]==id) {
+						cCnt = i;
+					}
+				}
+				
+				for(i=(cCnt+1);i<idArr.length;i++) {
+					select = document.getElementById(idArr[i]);
+					select.length = 1;
+				}		
+			}
+			
+			// -선택- 처음 초기화
+			function setFirstOption(select) {
+				console.log(select);
+				var obj = document.createElement('option');
+				obj.value = "";
+				obj.text = "-선택-";
+				select.add(obj);
+			}
+	}
+	
+	window.onload = function() {
+		var selectId = ['select1','select2','select3','select4'];
+		var obj = new SelectModule(selectId);
+		obj.initData();
+	}
+</script>
+<body>
+	<h1>자바 스크립트 TEST</h1>
+	<form>
+		
+		<nav class="nav">
+		  <input type="checkbox" class="nav__cb" id="menu-cb"/>
+		  <div class="nav__content">
+		    <ul class="nav__items">
+		      <li class="nav__item">
+		        <span class="nav__item-text">
+		          <select id = 'select1'></select><span>회사</span>
+		        </span>
+		      </li>
+		      <li class="nav__item">
+		        <span class="nav__item-text">
+		          <select id = 'select2'></select><span>기종</span>
+		        </span>
+		      </li>
+		      <li class="nav__item">
+		        <span class="nav__item-text">
+		          <select id = 'select3'></select><span>모델명</span>
+		        </span>
+		      </li>
+		      <li class="nav__item">
+		        <span class="nav__item-text">
+		          <select id = 'select4'></select><span>타이틀</span>
+		        </span>
+		      </li>
+		      <li class="nav__item">
+		        <span class="nav__item-text">
+		        	<input type="submit" class="btn first" value="submit">
+		        </span>
+		      </li>
+		    </ul>
+		  </div>
+		  <label class="nav__btn" for="menu-cb"></label>
+		</nav>
+	</form>
+</body>
+</html>

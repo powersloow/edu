@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<script>
+(function() {
+	var obj = {name:"홍길동",
+			   age : 15};
+	for(var sdel in obj) {
+		console.log(sdel, obj[sdel]);	
+	}
+	console.dir(obj);
+	if(obj.hasOwnProperty("constructor")) {
+		consloe.log("constructor");
+	}
+	var a = [1];
+	//console.log(a instanceof Array);
+	//console.log(a instanceof Object);
+	//console.log(a);
+	
+	void function() {
+		var bar = function () {};
+		var baz = function () {};
+		var foo = function () {
+			bar();
+			baz();
+		};
+		var biz = function() {};
+		
+		foo();
+		biz();
+	}
+})();
+</script>
+<body>
+
+</body>
+</html>

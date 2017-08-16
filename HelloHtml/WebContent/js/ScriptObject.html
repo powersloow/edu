@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<script>
+	var computer = {menufacturer:"hp",
+					modelNm:"hp3156789",
+					outPrice:500000,
+					isColor:true,
+					func:{turnOn:function() {
+						console.log("turnOn 함수 호출");
+					},
+						  turnOff:function() {},
+						  volumeUp:function() {},
+						  volumeDown:function() {}}
+	};
+	var computer1 = new Object();
+	console.log(computer.menufacturer);
+	console.log(computer.modelNm);
+	console.log(computer.outPrice);
+	console.log(computer.isColor);
+	console.log(computer.func);
+	computer.func.turnOn();
+	computer["func"].turnOn();
+	
+	var myPerson = new Object();
+	myPerson.name = "홍길동";
+	myPerson.age = 500;
+	myPerson.showInfo = function() {
+		console.log(this.name);
+		console.log(this.age);
+	}
+	myPerson.showInfo();
+</script>
+<body>
+
+</body>
+</html>

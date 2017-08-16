@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+
+<script>
+	// 자동차 클래스(function 설계) 가지고 객체(function) 생성
+	(function() {
+		function add(x, y) {
+			return x + y;
+		}
+
+		var plus = function(x, y) {
+			return x + y;
+		}
+
+		console.log(add(1, 2));
+		console.log(plus(3, 2));
+
+	})();
+
+	function Car(wheelCnt, manufacturer, speed) {
+		var maxSpeed = 200;
+		var counter = 0;
+		var engine = 0;
+		this.wheelCnt = wheelCnt;
+		this.manufacturer = manufacturer;
+		this.speed = speed;
+		this.init = function() {
+			//clearEngine.aplly(this);
+		};
+		this.speedUp = function() {
+			console.log(++counter);
+			var innerCounter = 0;
+			innerCounter++;
+			if(this.speed >= maxSpeed) {
+				console.log("최대스피드 초과");
+			}
+			this.speed++;
+		};
+		this.speedDown = function() {
+			this.speed--;
+		};
+		function clearEngine() {
+			engine = 0;
+			this.speed = 0;
+		}
+		/* this.getEngine() = function() {
+			return engine;
+		} */
+	}
+	
+	Car.prototype.speedDown = function() {
+		this.speed--;
+		
+	}
+	
+	/* 	var car1 = new Car();
+	console.log(car1);
+	car1.wheelCnt = 8;
+	car1.manufacturer = "르노삼성";
+	car1.speed = 3;
+	car1.speedUp();
+
+	var car2 = new Car();
+
+	console.log(car1);
+	console.log(car2); */
+
+	var sm5 = new Car(4, "삼성", 100);
+	sm5.speedDown();
+	console.log(sm5.speed);
+	var k5 = new Car(4, "KIA", 80);
+	var sm3 = {name : "sm3"};
+	console.log(sm5);
+	console.log(k5);
+	console.log(sm3);
+	
+	sm5.init();
+		
+	
+	function person(pName, pAge) {
+		var userName = pName;
+		var age = pAge;
+		
+		function setUserName(name) {
+			userName = name;
+		}
+		function getUserName() {
+			return userName;
+		}
+		
+		return {setUserName : setUserName, getUserName : getUserName};
+	}
+	
+	var person1 = person("홍길동", 500);
+	var person2 = person("임꺽정", 300);
+	
+	console.log(person1.getUserName());
+	console.log(person2.getUserName());
+</script>
+
+<body>
+
+
+</body>
+</html>

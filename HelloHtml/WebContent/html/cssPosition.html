@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<style>
+	body {
+		font-family : Verdana,sans-serif;
+		font-size: 0.9e;
+	}
+	
+	header, footer {
+		padding : 10px;
+		color : #fff;
+		background-color : #000;
+	}
+	
+	section {
+		margin : 5px;
+		padding : 10px;
+		background-color : #f26fbe;
+	}
+	
+	article {
+		margin : 5px;
+		padding : 10px;
+		background-color : #fff;
+	}
+	
+	/* h1 {
+		font-size : inherit;
+	} */
+	
+	section > article > div {
+		border : 5px solid #3a6faa;
+		width : 100px;
+		height: 100px;
+		display : inline-block;
+	}
+	
+	section > article > div.positionTest1 {
+		border : 1px dotted green;
+		width : 100px;
+		height : 100px;
+		position : relative;
+		left : 150px;
+		top : 10px
+	}
+	section > article > div.positionTest2 {
+		border : 1px dotted green;
+		width : 100px;
+		height : 100px;
+		position : absolute;
+		left : 10px;
+		top : 10px;
+	}
+	section > article > div.positionTest3 {
+		border : 1px dotted green;
+		width : 100px;
+		height : 100px;
+		position : fixed;
+		left : 50%;
+		top : 50%;
+	}
+	
+	section > article > div.myPosition1 {
+		border : 0px dotted ;
+		background-color : #ff0000;
+		width : 100px;
+		height : 100px;	
+		position: relative;
+    	z-index: 3;
+	}
+	section > article > div.myPosition2 {
+		border : 0px dotted ;
+		background-color : #00ff00;
+		width : 100px;
+		height : 100px;
+		position: relative;
+    	left: -80px;
+    	top : 40px;
+    	z-index: 2;
+	}
+	section > article > div.myPosition3 {
+		border : 0px dotted ;
+		background-color : #0000ff;
+		width : 100px;
+		height : 100px;
+		position: relative;
+    	left: -160px;
+    	top : 80px;
+    	z-index: 1;
+	}
+	
+	section > article > div.myPosition {
+		border : 15px dotted #fff;
+		background-color : #000;
+		width : 100px;
+		height : 100px;
+		position: absolute;
+    	left: -160px;
+    	top : 80px;
+    	z-index: 1;
+	}
+</style>
+<body>
+	<header>
+		<h1>헤더</h1>
+	</header>
+	<section>
+		<article>
+			<div>div1</div>
+			<div>div2</div>
+			<div>div3</div>
+			<div>div4</div>
+		</article>
+		<article>
+			<div class = "positionTest1">relative</div>
+			<div class = "positionTest1">fixed</div>
+			<div class = "positionTest2">absolute</div>
+			<div class = "positionTest1">div4</div>
+		</article>
+		<article>
+			<p>ㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇ</p>
+			<div class = "myPosition1"></div>
+			<div class = "myPosition2"></div>
+			<div class = "myPosition3"></div>
+		</article>
+		<p>p!</p>
+	</section>
+	<section>
+		<article>
+			<div class = "myPosition"></div>
+			<div class = "myPosition"></div>
+			<div class = "myPosition"></div>
+		</article>
+	</section>
+</body>
+</html>

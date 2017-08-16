@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<script>
+	document.write("hello");	
+	
+	window.onload = function onLoad() {
+		var obj = document.getElementById("contents");
+		obj.value = "hello world!";	
+	}
+	
+	function operatorAdd(op1, op2) {
+		return op1 + op2;
+	}
+	
+	function test(op1, op2, operatorAdd) {
+		return operatorAdd(op1, op2);
+	}
+	
+	window.onload = function() {
+		var obj = document.getElementById("contents");
+		obj.value = "hello world!";	
+		
+		console.log(test(1,2,operatorAdd));
+		//alert(test(1,2,operatorAdd));
+	}
+	
+</script>
+<body>
+	<input type = "text" value ="hi" id = "contents" />
+	<script>
+		document.write("<p>hello1</p>");
+		document.write("hello2/n");
+		document.write("hello3");
+	</script>
+</body>
+</html>

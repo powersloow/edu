@@ -6,36 +6,37 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ClassInfo {	
+public class ClassInfo {
 	int count;
-	
+
 	String stuId;
 	String name;
 	String code;
-	int korScor;
-	int engScor;
+	int korScore;
+	int engScore;
 
 	List<Student> stuList = new ArrayList<Student>();
 
 	public void insertStudent() {
 		String fileName = "학생리스트.txt";
 		try {
-			BufferedReader in = new BufferedReader(new FileReader("D:\\dg\\Test\\"+fileName));
+			BufferedReader in = new BufferedReader(new FileReader("D:\\dg\\Test\\" + fileName));
 			String s;
-
+			
 			while ((s = in.readLine()) != null) {
 				count++;
+
 				String[] split = s.split("\t");
 
 				stuId = split[0].trim();
 				name = split[1].trim();
 				code = split[2].trim();
-				korScor = Integer.valueOf(split[3]);
-				engScor = Integer.valueOf(split[4]);
+				korScore = Integer.valueOf(split[3]);
+				engScore = Integer.valueOf(split[4]);
 				if (split[5].trim().equals("내국인")) {
-					stuList.add(new DomeStudent(stuId, name, code, korScor, engScor));
+					stuList.add(new DomeStudent(stuId, name, code, korScore, engScore));
 				} else {
-					stuList.add(new ForeStudent(stuId, name, code, korScor, engScor));
+					stuList.add(new ForeStudent(stuId, name, code, korScore, engScore));
 				}
 			}
 			in.close();
@@ -46,8 +47,9 @@ public class ClassInfo {
 	}
 
 	public static void main(String[] args) {
-		StuRank sRank = new StuRank();
 		ClassInfo infoStudent = new ClassInfo();
+		StuRank sRank = new StuRank();
+
 		infoStudent.insertStudent();
 		sRank.rankCheck(infoStudent);
 	}
@@ -56,45 +58,55 @@ public class ClassInfo {
 abstract class Student {
 	private String name;
 	private String stuId;
-	private int korScor;
-	private int engScor;
-	private int totScor;
-	private float avgScor;
+	private int korScore;
+	private int engScore;
+	private int totScore;
+	private float avgScore;
 
-	public int getTotScor() {
-		return totScor;
+	public int getTotScore() {
+		return totScore;
 	}
-	public float getAvgScor() {
-		return avgScor;
+
+	public float getAvgScore() {
+		return avgScore;
 	}
-	public int getKorScor() {
-		return korScor;
+
+	public int getKorScore() {
+		return korScore;
 	}
-	public int getEngScor() {
-		return engScor;
+
+	public int getEngScore() {
+		return engScore;
 	}
+
 	public String getName() {
 		return name;
 	}
+
 	public String getStuId() {
 		return stuId;
 	}
-	
-	public void setTotScor() {
-		this.totScor = korScor + engScor;
+
+	public void setTotScore() {
+		this.totScore = korScore + engScore;
 	}
-	public void setAvgScor() {
-		this.avgScor = totScor / 2;
+
+	public void setAvgScore() {
+		this.avgScore = totScore / 2;
 	}
-	public void setKorScor(int korScor) {
-		this.korScor = korScor;
+
+	public void setKorScore(int korScore) {
+		this.korScore = korScore;
 	}
-	public void setEngScor(int engScor) {
-		this.engScor = engScor;
+
+	public void setEngScore(int engScore) {
+		this.engScore = engScore;
 	}
+
 	public void setName(String name) {
 		this.name = name;
 	}
+
 	public void setStuId(String stuId) {
 		this.stuId = stuId;
 	}
@@ -108,29 +120,30 @@ class DomeStudent extends Student {
 	public String getResiId() {
 		return resiId;
 	}
+
 	public void setResiId(String resiId) {
 		this.resiId = resiId;
 	}
 
-	public DomeStudent(String stuId, String name, String code, int korScor, int engScor) {
+	public DomeStudent(String stuId, String name, String code, int korScore, int engScore) {
 		super();
 		setStuId(stuId);
 		setName(name);
 		setResiId(code);
-		setKorScor(korScor);
-		setEngScor(engScor);
-		setTotScor();
-		setAvgScor();
+		setKorScore(korScore);
+		setEngScore(engScore);
+		setTotScore();
+		setAvgScore();
 	}
 
 	public void showInfo() {
 		System.out.print("name : " + getName());
 		System.out.print("\t stuId : " + getStuId());
-		System.out.print("\t korScor : " + getKorScor());
-		System.out.print("\t engScor : " + getEngScor());
-		System.out.print("\t totScor : " + getTotScor());
-		System.out.print("\t avgScor : " + getAvgScor());
-		System.out.print("\t resiId :\t" + getResiId());
+		System.out.print("\t korScore : " + getKorScore());
+		System.out.print("\t engScore : " + getEngScore());
+		System.out.print("\t totScore : " + getTotScore());
+		System.out.print("\t avgScore : " + getAvgScore());
+		System.out.print("\t resiId : " + getResiId());
 		System.out.println();
 	}
 }
@@ -141,40 +154,46 @@ class ForeStudent extends Student {
 	public String getForeignId() {
 		return foreignId;
 	}
+
 	public void setForeignId(String foreignId) {
 		this.foreignId = foreignId;
 	}
-	
-	public ForeStudent(String stuId, String name, String code, int korScor, int engScor) {
+
+	public ForeStudent(String stuId, String name, String code, int korScore, int engScore) {
 		super();
 		setStuId(stuId);
 		setName(name);
 		setForeignId(code);
-		setKorScor(korScor);
-		setEngScor(engScor);
-		setTotScor();
-		setAvgScor();
+		setKorScore(korScore);
+		setEngScore(engScore);
+		setTotScore();
+		setAvgScore();
 	}
 
 	public void showInfo() {
 		System.out.print("name : " + getName());
 		System.out.print("\t stuId : " + getStuId());
-		System.out.print("\t korScor : " + getKorScor());
-		System.out.print("\t engScor : " + getEngScor());
-		System.out.print("\t totScor : " + getTotScor());
-		System.out.print("\t avgScor : " + getAvgScor());
-		System.out.print("\t foreignId :\t" + getForeignId());
+		System.out.print("\t korScoree : " + getKorScore());
+		System.out.print("\t engScoree : " + getEngScore());
+		System.out.print("\t totScoree : " + getTotScore());
+		System.out.print("\t avgScoree : " + getAvgScore());
+		System.out.print("\t foreignId : " + getForeignId());
 		System.out.println();
 	}
 }
 
+class RankUtil {
+	
+}
+
+
 class StuRank {
 	Student[] stuR;
-	
+
 	public void insertArr(ClassInfo infoStudent) {
 		stuR = new Student[infoStudent.count];
-	
-		for(int i = 0; i<stuR.length; i++) {
+
+		for (int i = 0; i < stuR.length; i++) {
 			stuR[i] = infoStudent.stuList.get(i);
 		}
 	}
@@ -183,26 +202,26 @@ class StuRank {
 		insertArr(infoStudent);
 
 		int size = stuR.length;
-        int max;
-        Student temp;
-        
-        for(int i=0; i<size-1; i++){
-        	max = i;
-            for(int j=i+1; j<size; j++){
-                if(stuR[max].getAvgScor() < stuR[j].getAvgScor()){
-                	max = j;
-                }
-            }
-            temp = stuR[max];
-            stuR[max] = stuR[i];
-            stuR[i] = temp;
-        }
+		int max;
+		Student temp;
+
+		for (int i = 0; i < size - 1; i++) {
+			max = i;
+			for (int j = i + 1; j < size; j++) {
+				if (stuR[max].getAvgScore() < stuR[j].getAvgScore()) {
+					max = j;
+				}
+			}
+			temp = stuR[max];
+			stuR[max] = stuR[i];
+			stuR[i] = temp;
+		}
 		printStuRank();
 	}
 
 	private void printStuRank() {
-		for(int i = 0; i<stuR.length;i++) {
-			System.out.print("rank : "+(i+1)+"\t");
+		for (int i = 0; i < stuR.length; i++) {
+			System.out.print("rank : " + (i + 1) + "\t");
 			stuR[i].showInfo();
 		}
 	}

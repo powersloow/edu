@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>자료보관문서 색인표</title>
+</head>
+<style>
+table, th, td {
+	border: 1px solid black;
+}
+</style>
+
+<script>
+	var count = 2;
+	function addRow() {
+		var fileTable = document.getElementById("fileTable");
+		var tBody = fileTable.tBodies[0];
+		var row = fileTable.insertRow(tBody.rows.length);
+		var cell = row.insertCell(0);
+
+		cell.innerHTML = "<input type='checkbox' />";
+		cell = row.insertCell(1);
+		cell.innerHTML = count++;
+
+		for (var i = 2; i < 10; i++) {
+			cell = row.insertCell(i);
+
+		}
+		console.dir(fileTable);
+		console.log(fileTable.nodeName);
+		fileTable.insertRow();
+	}
+
+	function delRow() {
+		var fileTable = document.getElementById("fileTable");
+		var tBody = fileTable.tBodies[0];
+		for (var i = tBody.rows.length-1 ; i >= 0; i--) {
+			var trObj = tBody.rows[i];
+			//alert(trObj.children[0].children[0].checked);
+			if (trObj.children[0].children[0].checked) {
+				tBody.deleteRow(i);
+			}
+		}
+	}
+</script>
+
+<body>
+	<h2>자료보관문서 색인표</h2>
+	<input type="button" onclick="addRow()" value="행 추가">
+	<input type="button" onclick="delRow()" value="행 삭제">
+	<br>
+	<br>
+	<table id="fileTable">
+		<thead>
+			<tr>
+				<th rowspan="2">선택</th>
+				<th rowspan="2">No.</th>
+				<th rowspan="2">보존기간</th>
+				<th rowspan="2">보관철</th>
+				<th colspan="3">보관부서</th>
+				<th rowspan="2">승인여부</th>
+				<th rowspan="2">승 인</th>
+				<th rowspan="2">폐기일</th>
+			</tr>
+			<tr>
+				<th>자료명</th>
+				<th>전장수</th>
+				<th>보관부서</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td><input type="checkbox" /></td>
+				<td>1</td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+		</tbody>
+	</table>
+</body>
+</html>
+

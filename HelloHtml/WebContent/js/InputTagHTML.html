@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<script>
+	function doSubmit() {
+		var name = document.getElementById("name");
+		if(name.value != "kim") {
+			// alert(name.value);
+			event.preventDefault();
+		}
+	}
+	
+	function validateForm() {
+		var checker = document.getElementsByName("koreanCheck");
+		// alert();
+		var isChecked = false;
+		for(var i = 0 ; i<checker.length; i++) {
+			if(checker[i].checked) {
+				isChecked = !isChecked;
+				
+			}
+		}
+		
+		if(isChecked){}
+		else {
+			alert("내/외국인 구분을 선택하세요");
+			checker[0].focus();
+		}
+		
+	}
+</script>
+<body>
+	<form action = "./action_page.php">
+		FirstName<br>
+		<input type="text" name ="firstName" value="kim"><br>
+		
+		LastName<br>
+		<input type="text" name ="LastName" value="dong hyun" id = "name"><br>
+		<input type="submit" onClick = "doSubmit();" value ="submit" /><br><br>
+		
+		<input type="radio" name="koreanCheck" value="native" id = "native">내국인
+		<input type="radio" name="koreanCheck" value="foregin" id = "foregin">외국인
+		
+		<br>
+		<input type="button" onClick = "validateForm();" value ="유효성 체크" />
+	</form>
+</body>
+</html>

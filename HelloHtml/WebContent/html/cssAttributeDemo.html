@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<style>
+	p {
+		font-size : 1em;
+	}
+	
+	p.small {
+		font-size : 2em;
+	}
+
+	p.midi {
+		font-size : 3em;
+	}
+	
+	p.large {
+		font-size : 4em;
+	}
+	
+	section.fSection {
+		border : 1px solid black; 
+		text-align : justfy;
+	}
+
+	section.sSection {
+		border : 1px solid black;
+		background-color : hotpink;
+		margin : 20px; 
+		text-align : center;
+	}
+	
+	section table.userTable {
+		border : 1px solid black;
+		width : 100%;
+	}
+	
+	section table.userTable th, section table.userTable td {
+		border : 1px solid hotpink;
+	}
+	
+	section table.userTable  > thead > tr > th{
+		width : 25%
+	}
+	
+	section table.userTable > tbody > tr > td.numberType {
+		text-align : right;
+	}
+	
+	div {
+		width: 100px;
+		height: 100px;
+		background-color : #ff0000;
+	}
+
+	div.hasBox {
+		border : 3px solid #000000;
+		padding : 10px;
+		/* padding-top : 10px;
+		padding-bottom : 10px;
+		padding-right : 10px;
+		padding-left : 10px; */
+		margin : 10px;
+	}
+</style>
+<body>
+	<section>
+		<div>div</div>
+		<div class = "hasBox">div has box</div>
+	</section>
+	<section>
+		<article>
+			<p>p태그 css Test</p>
+			<p>p태그 css Test</p>
+		</article>
+		<article>
+			<p class = "midi">p태그 css Test 3em</p>
+			<p class = "large">p태그 css Test 4em</p>
+		</article>
+	</section>
+	<section class = "fSection">
+		<article>
+			<p>p태그 css Test</p>
+			<p>p태그 css Test</p>
+		</article>
+		<article>
+			<p class = "midi">p태그 css Test 3em</p>
+			<p class = "large">p태그 css Test 4em</p>
+		</article>
+	</section>
+	<section class = "sSection">
+		<article>
+			<p>p태그 css Test</p>
+			<p>p태그 css Test</p>
+		</article>
+		<article>
+			<p class = "small">p태그 css Test 2em</p>
+			<p class = "midi">p태그 css Test 3em</p>
+			<p class = "large">p태그 css Test 4em</p>
+		</article>
+	</section>
+	
+	<section class = "fSection">
+		<h2>급여 테이블</h2>
+		<table class = "userTable">
+			<thead>
+				<th>사원명</th>
+				<th>사원No</th>
+				<th>직급</th>
+				<th>기본급</th>
+			</thead>
+			<tbody>
+				<tr>
+					<td>홍길동</td>
+					<td>2017001</td>
+					<td>대리</td>
+					<td class = "numberType">1,500,000</td>
+				</tr>
+				<tr>
+					<td>임꺽정</td>
+					<td>2017002</td>
+					<td>대리</td>
+					<td class = "numberType">1,300,000</td>
+				</tr>
+				<tr>
+					<td>변사또</td>
+					<td>2017003</td>
+					<td>사원</td>
+					<td class = "numberType">1,200,000</td>
+				</tr>
+			</tbody>
+		</table>
+	</section>
+	
+	<section class ="fSection">
+		<p>피!!</p>
+	</section>
+	
+	<section class ="sSection">
+		<p>피!!</p>
+	</section>
+
+</body>
+</html>

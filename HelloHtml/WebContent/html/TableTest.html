@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>tableTest</title>
+<style>
+table, th, td {
+    border: 1px solid black;
+}
+</style>
+</head>
+<body>
+	<table>
+		<thead>
+			<tr>
+				<td style="width:50%;">이름</td>
+				<td><input type="text" size = "10" /></td>
+				<td><input type="button" value ="확인" id='ok' /></td>
+				<td><input type="button" value ="취소" id='cansle'/></td>
+			</tr>
+		</thead>
+		<tbody>
+			<tr	>
+				<td colspan="2">2개짜리</td>
+				<td colspan="2">2개짜리</td>
+			</tr>
+		</tbody>
+		<tfoot>
+			<tr>
+				<td>5</td>
+				<td rowspan="2">6</td>
+				<td>5</td>
+				<td>5</td>
+			</tr>
+			<tr>
+				<td>5</td>
+				<td>5</td>
+				<td>5</td>
+			</tr>
+			<tr>
+				<td>5</td>
+				<td>5</td>
+				<td>5</td>
+			</tr>
+		</tfoot>
+	</table>
+	
+	<br>
+	
+	<table>
+		<thead>
+			<tr>
+				<td></td>
+				<td></td>
+				<td colspan="4">분기별 판매량</td>
+			</tr>
+			<tr>
+				<td></td>
+				<td></td>
+				<td>1분기</td>
+				<td>2분기</td>
+				<td>3분기</td>
+				<td>4분기</td>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td rowspan="2">경기도</td>
+				<td>수원</td>
+				<td>10</td>
+				<td>1</td>
+				<td>3</td>
+				<td>4</td>
+			</tr>
+			<tr>
+				<td>성남</td>
+				<td>4</td>
+				<td>3</td>
+				<td>4</td>
+				<td>2</td>
+			</tr>
+		</tbody>
+	</table>
+</body>
+</html>

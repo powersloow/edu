@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<script>
+	// alert();
+	var gTitle = "global";
+	outer();
+	function outer() {
+		var oVar = 1;
+		var gTitle = "outter";
+		inner();
+		function inner() {
+			var iVar = 2;
+			console.log(oVar);
+			console.log(iVar);
+			console.log(gTitle);
+		}
+	}
+	
+	/* function outer2() {
+		console.log(oVar);
+	} */
+	
+	var nameArr[];
+	var ageArr = new Array();
+	(function(pOption) {
+		nameArr[0] = 1;
+		nameArr[1] = 2;
+		nameArr[2] = {name : "홍길동"};
+		nameArr.description = "배열연습1";
+		nameArr["subDescrption"] = "배열연습 2";
+	
+	
+	var defaultOption = {color : "red",
+						 width : "100px",
+						 height : "100%"}
+	var opt = option||defaultOption;
+	
+	console.log(opt);
+	
+	})(option);
+	
+	function clouserTest(pName) {
+		alert();
+		var name = pName;
+		function getName() {
+			return name;
+		}
+		return getName;
+	}
+	
+	
+	
+	
+	(function() {
+		
+		var test1 = clouserTest("홍길동");
+		var test2 = clouserTest("임꺽정");
+		console.log(test1);
+		console.log(test1());
+		console.log(test2());
+	})();
+</script>
+<body>
+
+</body>
+</html>
